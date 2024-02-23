@@ -9,7 +9,7 @@
 
 .hero:before {
     content: '';
-    background url('../../assets/hero-img.jpg') no-repeat center center/cover;
+    background: url('../../assets/hero-img.jpg') no-repeat center center/cover;
     height: 100%;
     width: 100%;
     position: absolute;
@@ -32,4 +32,66 @@
 .hero h1 {
     font-size: 3.5rem;
     text-transform: capitalize;
+}
+
+.hero .search-text {
+    margin: 1.5rem;
+    font-size: 1.4rem;
+}
+
+.search {
+    display: flex;
+    background-color: white;
+    color: black;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #ccc;
+    padding: 4px;
+    border-radius: 8px;
+}
+
+.search input[type=text] {
+    border: transparent;
+    background-color: transparent;
+    width: 400px;
+    font-size: 1.2rem;
+    font-family: 'Oswald' 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+}
+
+.search input[type=text]:focus {
+    outline: none;
+}
+
+.search label {
+    padding: 0 14px 0 8px;
+}
+
+.search .radio {
+    display: flex;
+    align-items: center; 
+}
+
+.search button {
+    background-image: linear-gradient(45deg, blue 0%, lightblue 100%);
+    border: 1px solid blue;
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 940px) {
+    .hero {
+        height 70vh;
+    }    
+
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .search input[text=type] {
+        width: 100%;
+    }
 }
