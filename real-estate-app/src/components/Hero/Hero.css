@@ -84,7 +84,7 @@
 
 @media screen and (max-width: 940px) {
     .hero {
-        height 70vh;
+        height: 70vh;
     }    
 
     .hero h1 {
