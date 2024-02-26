@@ -3,7 +3,7 @@
     height: 90px;
     top: 0;
     left: 0;
-    background-color: wheat;
+    background-color: white;
     border-bottom: 1px solid white;
 }
 
@@ -35,7 +35,7 @@
     font-size: 1.5rem;
 }
 
-@media  and (max-width:940px) {
+@media and (max-width:940px) {
     .hamburger {
         display: block;
     }

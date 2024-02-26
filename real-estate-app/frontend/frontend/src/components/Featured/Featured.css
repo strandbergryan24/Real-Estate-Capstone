@@ -35,6 +35,7 @@
 
 .span-5 {
     grid-column: span 5;
+    margin-top: 0rem;
 }
 
 .image-grid-row-2 {
@@ -42,7 +43,13 @@
 }
 
 .info {
+    display: flex;
     grid-column: span 1;
+    justify-content: center;
+    align-items: center;
+    margin: 0rem 0;
+    text-align: center;
+    font-size: large;
 }
 
 .info-grid {
@@ -50,6 +57,15 @@
     grid-template-columns: repeat(5, 1fr);
     justify-content: center; 
     align-items: center; 
+}
+
+.img-details {
+    display: grid;
+    place-items: center;
+}
+
+.img-details .discription {
+    padding: 0rem 3rem 1rem 3rem;
 }
 
 .right-image-details .btn {
@@ -71,4 +87,36 @@
 
 .container .btn {
     align-items: center;
+}
+
+@media and (max-width:940px) {
+    .featured .container {
+        grid-template-columns: repeat(1, 1fr); 
+    }
+    
+    .span-3,
+    .span-2,
+    .span-5 {
+        grid-column: span 1; 
+    }
+    
+    .info-grid {
+        grid-template-columns: repeat(1, 1fr); 
+    }
+    
+    .img-details .discription {
+        padding: 0rem 1rem 1rem 1rem; 
+    }
+
+    .info {
+        flex-wrap: wrap;
+        text-align: center;
+    }
+
+    .info p {
+        overflow: hidden;
+        white-space: nowrap; 
+        text-overflow: ellipsis; 
+        max-width: 100%; 
+    }
 }
