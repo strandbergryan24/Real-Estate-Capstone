@@ -1,0 +1,94 @@
+.featured {
+    margin-top: 5rem;
+}
+
+.featured .featured-text {
+    text-align: center;
+    margin: 1rem 0;
+}
+
+.featured .container {
+    --gap: 1.2rem;
+    --num-cols: 5;
+    --row-height: 300px;
+
+    padding: 1rem;
+    display: grid;
+    grid-template-columns: repeat(var(--num-cols), 1fr);
+    grid-auto-rows: var(--row-height);
+    gap: var(--gap)
+}
+
+.featured .container img {
+    width: 100%;
+    height:100%;
+    object-fit: cover;
+}
+
+.span-3 {
+    grid-column: span 3;
+}
+
+.span-2 {
+    grid-column: span 2;
+}
+
+.span-5 {
+    grid-column: span 5;
+}
+
+.image-grid-row-2 {
+    grid-row: span 2;
+}
+
+.info {
+    grid-column: span 1;
+    justify-content: center;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    justify-content: center;
+}
+
+.featured .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.featured .info {
+    display: flex;
+    justify-content: space-between;
+    margin: 0rem 0;
+    width: 60%;
+}
+
+.container .btn {
+    align-items: center;
+}
+
+.img-details {
+    display: grid;
+    place-items: center;
+}
+
+.img-details * {
+    margin-bottom: 1rem;
+}
+
+.img-details .span-5 {
+    margin-top: 1rem;
+}
+
+.img-details .discription {
+    margin-bottom: 0rem;
+    margin-top: 0rem;
+    padding: 0rem 3rem;
+}
+
+.img-details .btn {
+    margin-top: 1rem;
+    
+}
