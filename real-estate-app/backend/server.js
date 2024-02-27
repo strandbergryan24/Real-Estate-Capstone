@@ -22,7 +22,7 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
     store: MongoStore.create({
-        mongoUrl: process.env.MONGOURL,
+        mongoUrl: process.env.MONGOURI,
         collectionName: "sessions"
     }),
     cookie: {
@@ -36,5 +36,3 @@ app.use('/', routes)
 app.use((req, res)=>{res.status(404).json({message:"This is not a proper route"})})
 
 app.listen(PORT,()=>{console.log("listening on port "+ PORT)})
-
-console.log("MongoDB connection URL:", process.env.MONGOURL);

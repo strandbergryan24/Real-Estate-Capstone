@@ -1,8 +1,8 @@
 const { error } = require('console')
 const mongoose = require('mongoose')
-const {MONGOURL} = process.env
+const {MONGOURI} = process.env
 
-mongoose.connect(MONGOURL+"realEstateListing", {
+mongoose.connect(MONGOURI+"realEstateListing", {
     useUnifiedTopology: true,
     useNewurlParse: true
 })
