@@ -1,5 +1,5 @@
 const bcryot = require("bcrypt");
-const Users = require('..models/Users');
+const Users = require('../models/Users');
 const express = require('express');
 
 const session = (req, res) => {

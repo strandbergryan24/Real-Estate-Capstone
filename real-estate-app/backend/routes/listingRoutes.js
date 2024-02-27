@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {listingCtrl} = require('../controllers/listingCtrl.js')
+const listingCtrl = require('../controllers/listingCtrl.js')
 
 router.get('/', listingCtrl.getListing)
 router.post('/', listingCtrl.createListing)
