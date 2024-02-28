@@ -1,8 +1,12 @@
-import React, {useState} from 'react'
-import {HiOutlineMenuAlt4} from 'react-icons/hi'
-import {FaRegTimesCircle} from 'react-icons/fa'
-import {BsFillHouseFill} from 'react-icons/bs'
-import './NavBar.css'
+import React, {useState} from 'react';
+import {HiOutlineMenuAlt4} from 'react-icons/hi';
+import {FaRegTimesCircle} from 'react-icons/fa';
+import {BsFillHouseFill} from 'react-icons/bs';
+import { Link } from 'react-router-dom'
+import './NavBar.css';
+
+// link imports 
+import About from '../../pages/about/about.js'
 
 const NavBar = () => {
 
@@ -15,9 +19,10 @@ const NavBar = () => {
             <h1><span><BsFillHouseFill />Real</span>Estate</h1>
             <button className='btn'>Sign In</button>
             <ul className={click ? 'nav-menu active' : 'nav-menu'}>
-                <li><a href='#'>Home</a></li>
-                <li><a href='#'>About</a></li>
-                <li><a href='#'>New Listing</a></li>
+                <Link className='li' to="/">Home</Link>
+                <Link className='li' to="About" >About</Link>
+                <Link className='li' to="">New Listing</Link>
+                <Link className='li' to="">Sign Out</Link>
             </ul>
             <div className='hamburger' onClick={handleClick}> 
                 {click ? (<FaRegTimesCircle className='icon' />) : (<HiOutlineMenuAlt4 className='icon'/>)}
