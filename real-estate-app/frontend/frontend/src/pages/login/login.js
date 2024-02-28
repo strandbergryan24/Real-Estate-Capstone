@@ -26,4 +26,4 @@ const UserLoginForm = () => {
     );
 };
 
-export { UserLoginForm };
+export default UserLoginForm;

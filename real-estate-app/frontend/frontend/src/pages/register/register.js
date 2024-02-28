@@ -27,4 +27,4 @@ const UserRegistrationForm = () => {
     );
 };
 
-export { UserRegistrationForm }
+export default UserRegistrationForm;
