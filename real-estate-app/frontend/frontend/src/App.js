@@ -17,13 +17,13 @@ function App() {
         <NavBar />
         <Hero />
         <Routes>
-          <Route path='/' Component={ Featured } />
-          <Route path='/About' Component={ About } />
-          <Route path='/Login' Component={ UserLoginForm } />
-          <Route path='/Edit' Component={ EditListing } />
-          <Route path='/Show' Component={ ShowListingPage } />
-          <Route path='/Register' Component={ UserRegistrationForm } />
-          <Route path='/New' Component={ ListingForm } />
+          <Route path='/' element={ <Featured /> } />
+          <Route path='/about' element={ <About /> } />
+          <Route path='/login' element={ <UserLoginForm /> } />
+          <Route path='/edit' element={ <EditListing /> } />
+          <Route path='/show' element={ <ShowListingPage /> } />
+          <Route path='/register' element={ <UserRegistrationForm /> } />
+          <Route path='/new' element={ <ListingForm /> } />
         </Routes>
       </div>
     </Router>

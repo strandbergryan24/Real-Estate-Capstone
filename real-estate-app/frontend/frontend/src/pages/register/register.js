@@ -1,30 +1,52 @@
 import React, { useState } from 'react';
+import './register.css'
 
-const UserRegistrationForm = () => {
-    const [user, setUser] = useState({
+const UserRegistrationForm = ({ newUser }) => {
+    const url = 'http://localhost:4000/'
+    const [formData, setFormData] = useState ({
         username: '',
-        password: ''
+        password: '',
     });
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        try {
+            const response = await fetch(url + 'user', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                console.log(data.message);
+            } else {
+                console.error('Registration failed:', data.message);
+            }
+        } catch (error) {
+            console.error('Error registering user:', error);
+        }
+    };
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
-        setUser({ ...user, [name]: value });
-    };
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
+        setFormData({ ...formData, [name]: value });
     };
 
     return (
-        <div>
-            <h1>User Registration</h1>
+        <div className='userForm'> 
+            <h1>Create an Account</h1>
             <form onSubmit={handleSubmit}>
-                <p>Username: <input type="text" name="username" value={user.username} onChange={handleInputChange} required /></p>
-                <p>Password: <input type="password" name="password" value={user.password} onChange={handleInputChange} required /></p>
+                <p>Username: <input type="text" name="username" value={formData.username} onChange={handleInputChange} required /></p>
+                <p>Password: <input type="password" name="password" value={formData.password} onChange={handleInputChange} required /></p>
                 <button type="submit">Register</button>
             </form>
         </div>
-    );
-};
+    )
+}
 
-export default UserRegistrationForm;
+export default UserRegistrationForm
