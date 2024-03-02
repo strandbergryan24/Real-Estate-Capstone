@@ -16,7 +16,6 @@ const Featured = () => {
 
     return (
         <div className='featured'>
-            <h1 className='featured-text'>Featured Listings</h1>
             <div className='container'>
                 {listings.map(listing => (
                     <div key={listing._id} className='listing-container'>

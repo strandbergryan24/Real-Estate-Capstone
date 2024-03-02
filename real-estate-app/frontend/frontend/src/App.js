@@ -19,11 +19,11 @@ function App() {
         <Routes>
           <Route path='/' Component={ Featured } />
           <Route path='/About' Component={ About } />
-          <Route path='/login' Component={ UserLoginForm } />
+          <Route path='/Login' Component={ UserLoginForm } />
           <Route path='/Edit' Component={ EditListing } />
-          <Route path='/show' Component={ ShowListingPage } />
-          <Route path='/About' Component={ UserRegistrationForm } />
-          <Route path='/About' Component={ ListingForm } />
+          <Route path='/Show' Component={ ShowListingPage } />
+          <Route path='/Register' Component={ UserRegistrationForm } />
+          <Route path='/New' Component={ ListingForm } />
         </Routes>
       </div>
     </Router>

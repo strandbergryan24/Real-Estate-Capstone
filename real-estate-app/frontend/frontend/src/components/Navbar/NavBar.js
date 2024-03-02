@@ -17,11 +17,11 @@ const NavBar = () => {
     <div className='navbar'>
         <div className='container'>
             <h1><span><BsFillHouseFill />Real</span>Estate</h1>
-            <button className='btn'><Link to="">Sign In</Link></button>
+            <button className='btn'><Link to="/Login">Sign In</Link></button>
             <ul className={click ? 'nav-menu active' : 'nav-menu'}>
                 <Link className='li' to="/">Home</Link>
                 <Link className='li' to="/About" >About</Link>
-                <Link className='li' to="/NewListing">New Listing</Link>
+                <Link className='li' to="/New">New Listing</Link>
                 <Link className='li' to="">Sign Out</Link>
             </ul>
             <div className='hamburger' onClick={handleClick}> 
