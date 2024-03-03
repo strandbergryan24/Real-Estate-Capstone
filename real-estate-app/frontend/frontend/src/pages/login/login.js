@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './login.css'
 
 const UserLoginForm = () => {
+    const navigate = useNavigate();
+    const url = 'http://localhost:4000/';
+    const [username, setUsername] = useState('');
     const [loginData, setLoginData] = useState({
         username: '',
         password: ''
@@ -13,8 +16,29 @@ const UserLoginForm = () => {
         setLoginData({ ...loginData, [name]: value });
     };
 
-    const handleLogin = (e) => {
+    const handleLogin = async (e) => {
         e.preventDefault();
+
+        try {
+            const response = await fetch(url + 'session', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(loginData)
+            });
+
+            if (response.ok) {
+                const userData = await response.json();
+                setUsername(userData.username);
+                navigate('/');
+            } else {
+                const errorData = await response.json();
+                console.error('Error logging in ', errorData);
+            }
+        } catch (error) {
+            console.error('Error logging in:', error);
+        }
     };
 
     return (

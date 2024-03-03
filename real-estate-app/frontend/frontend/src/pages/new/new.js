@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import styles from './new.css'
 
 const ListingForm = () => {
     const [listing, setListing] = useState({
@@ -9,17 +10,17 @@ const ListingForm = () => {
         bathrooms: '',
         squareFootage: '',
         description: '',
-        images: []
+        imageLinks: ['', '', '', '', '']
     });
 
-    const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setListing({ ...listing, [name]: value });
+    const handleInputChange = (e, index) => {
+        const updatedLinks = [...listing.imageLinks];
+        updatedLinks[index] = e.target.value;
+        setListing({ ...listing, imageLinks: updatedLinks });
     };
 
-    const handleImageChange = (e) => {
-        const imagesArray = Array.from(e.target.files);
-        setListing({ ...listing, images: imagesArray });
+    const handlePropertyTypeChange = (e) => {
+        setListing({ ...listing, propertyType: e.target.value });
     };
 
     const handleSubmit = (e) => {
@@ -28,31 +29,63 @@ const ListingForm = () => {
     };
 
     return (
-        <div>
+        <div className="listing-form-container">
             <h1>Listing Form</h1>
-            <form onSubmit={handleSubmit} encType="multipart/form-data">
-                <p>Address: <input type="text" name="address" value={listing.address} onChange={handleInputChange} required /></p>
-                <p>Property Type:</p>
-                <label><input type="radio" name="propertyType" value="RENT" checked={listing.propertyType === 'RENT'} onChange={handleInputChange} required /> Rent</label>
-                <label><input type="radio" name="propertyType" value="SALE" checked={listing.propertyType === 'SALE'} onChange={handleInputChange} required /> Sale</label>
-                <p>Price ($): <input type="number" name="price" value={listing.price} onChange={handleInputChange} required /></p>
-                <p>Bedrooms: <input type="number" name="bedrooms" value={listing.bedrooms} onChange={handleInputChange} required /></p>
-                <p>Bathrooms: <input type="number" name="bathrooms" value={listing.bathrooms} onChange={handleInputChange} required /></p>
-                <p>Square Footage: <input type="text" name="squareFootage" value={listing.squareFootage} onChange={handleInputChange} required /></p>
-                <p>Description:</p>
-                <textarea name="description" rows="4" value={listing.description} onChange={handleInputChange} required></textarea>
-                <div>
-                    <p>Images:</p>
-                    <input type="file" name="images" accept="image/*" onChange={handleImageChange} multiple required />
-                    {listing.images.length > 0 && (
-                        <div>
-                            {listing.images.map((image, index) => (
-                                <img key={index} src={URL.createObjectURL(image)} alt={`Image ${index}`} style={{ maxWidth: '100px', maxHeight: '100px', marginRight: '10px' }} />
-                            ))}
-                        </div>
-                    )}
+            <form onSubmit={handleSubmit}>
+                <div className="form-group">
+                    <p>Address: <input type="text" className="custom-input" name="address" value={listing.address} onChange={(e) => handleInputChange(e, 0)} required /></p>
                 </div>
-                <button type="submit">Submit</button>
+                <div className="form-radio">
+                    <p>Property Type:  </p>
+                    <label>
+                        <input
+                            type="radio"
+                            name="propertyType"
+                            value="RENT"
+                            checked={listing.propertyType === 'RENT'}
+                            onChange={handlePropertyTypeChange}
+                            required
+                        /> Rent
+                    </label>
+                    <label>
+                        <input
+                            type="radio"
+                            name="propertyType"
+                            value="BUY"
+                            checked={listing.propertyType === 'BUY'}
+                            onChange={handlePropertyTypeChange}
+                            required
+                        /> Buy
+                    </label>
+                </div>
+                <div className="form-group">
+                    <p>Price: <input type="number" className="custom-input" name="price" value={listing.price} onChange={(e) => handleInputChange(e, 2)} required /></p>
+                </div>
+                <div className="form-group">
+                    <p>Bedrooms: <input type="number" className="custom-input" name="bedrooms" value={listing.bedrooms} onChange={(e) => handleInputChange(e, 3)} required /></p>
+                </div>
+                <div className="form-group">
+                    <p>Bathrooms: <input type="number" className="custom-input" name="bathrooms" value={listing.bathrooms} onChange={(e) => handleInputChange(e, 4)} required /></p>
+                </div>
+                <div className="form-group">
+                    <p>Square Footage: <input type="text" className="custom-input" name="squareFootage" value={listing.squareFootage} onChange={(e) => handleInputChange(e, 5)} required /></p>
+                </div>
+                <div className="form-description"></div>
+                <p>Description: <textarea name="description" className="custom-input" rows="4" value={listing.description} onChange={(e) => handleInputChange(e, 6)} required></textarea></p>
+                <div children="form-photos">
+                    <p>Image Links:</p>
+                    {listing.imageLinks.map((link, index) => (
+                        <input
+                            key={index}
+                            type="text"
+                            className="custom-input"
+                            value={link}
+                            onChange={(e) => handleInputChange(e, index)}
+                            placeholder={`Image ${index + 1} Link`}
+                        />
+                    ))}
+                </div>
+                <button className='btn' type="submit">Submit</button>
             </form>
         </div>
     );

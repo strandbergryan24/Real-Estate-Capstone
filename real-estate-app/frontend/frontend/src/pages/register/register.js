@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './register.css'
 
 const UserRegistrationForm = ({ newUser }) => {
-    const url = 'http://localhost:4000/'
+    const url = 'http://localhost:4000/';
+    const navigate = useNavigate();
     const [formData, setFormData] = useState ({
         username: '',
         password: '',
@@ -24,6 +26,7 @@ const UserRegistrationForm = ({ newUser }) => {
 
             if (response.ok) {
                 console.log(data.message);
+                navigate('/login');
             } else {
                 console.error('Registration failed:', data.message);
             }
