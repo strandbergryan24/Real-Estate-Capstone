@@ -5,7 +5,9 @@ const About = () => {
   return (
     <div>
         <h1>About This Applicatipon</h1>
-        <p className='description'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vehicula ante a tellus consectetur, id ultrices libero vulputate. Integer non ligula auctor, suscipit mauris nec, volutpat odio. Nulla facilisi. Duis vel ligula nec tortor vehicula dictum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vivamus tempus, felis ut mattis condimentum, est odio molestie dui, eget posuere ex velit vel risus. Maecenas auctor dui vel libero auctor aliquet. Donec vel ligula in lacus tempor consequat. Suspendisse potenti. Sed consectetur placerat dolor, nec ultricies elit dapibus id. Sed vestibulum lobortis orci, at aliquet justo facilisis at. Phasellus a ultricies libero.</p> 
+        <p className='description'>This project was created as capstone to the software engineering immersive bootcamp. This project is a full CRUD application that is meant to emulate real estate websites. The initial design supports registered users by allowing them to create new property listings, edit their listings and delete their listings. All users are able to see all listings, however only users who are registered will be able to edit, delete, and create new listings. For more information on the project checkout the linked repository below, where you can view all code as well as copy data in the project to test functionality. 
+
+        Git-Repository: https://github.com/strandbergryan24/Real-Estate-Capstone </p> 
     </div>
   )
 }

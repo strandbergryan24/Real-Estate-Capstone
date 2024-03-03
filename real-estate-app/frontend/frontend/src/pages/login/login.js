@@ -20,7 +20,7 @@ const UserLoginForm = () => {
         e.preventDefault();
 
         try {
-            const response = await fetch(url + 'session', {
+            const response = await fetch(url + 'login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -42,14 +42,14 @@ const UserLoginForm = () => {
     };
 
     return (
-        <div className='userForm'> 
+        <div className='userForm'>
             <h1>User Login</h1>
             <form onSubmit={handleLogin}>
                 <p>Username: <input type="text" name="username" value={loginData.username} onChange={handleInputChange} required /></p>
                 <p>Password: <input type="password" name="password" value={loginData.password} onChange={handleInputChange} required /></p>
                 <button className='btn' type="submit">Login</button>
             </form>
-            <h3><Link to='/Register'>Create Account</Link></h3>
+            <h3><Link to='/register'>Create Account</Link></h3>
         </div>
     );
 };
