@@ -1,85 +1,58 @@
+const express = require('express')
 const db = require('../models')
 
-const createListing = (req, res) => {
-    if(!req.session.currentUser) {
-        return res.status(400).json({ message: "No Active Session Found" });
-    };
-    const newListing = {
-        ...req.body,
-        user: req.session.currentUser.id
-    };
-    db.Listings.create(newListing).then((createdListing) => { 
-        if(!createdListing) {
-            return res.status(400).json({ message: "Cannot Create Listing"})
-        }
-            return db.Users.findByIdAndUpdate(
-                req.session.currentUser.id,
-                {$push: {trips: createdTrip._id}},
-                {new: true}
-            );
-    }).then((updatedUser) => {
-        if(updatedUser) {
-            return res.status(201).json({ message: "Trip created and user updated successfully"})
-        } else {
-            return res.status(404).json({ message: "User Not Found or not Updated"})
-        }
-    })
-    .catch((error) => {
-        console.error("Error in trip creating or updating user: ", error);
-        return res.status(500).json({ message: "Error Created Lisitng or Updating User"})
-    })
+const createListing = async (req, res) => {
+    try {
+        const newListing = await db.Listings.create(req.body);
+        res.status(201).json({ message: "Listing created successfully", data: newListing });
+    } catch (error) {
+        console.error("Error creating listing:", error);
+        res.status(500).json({ message: "Error creating listing" });
+    }
 }
 
-const getListing = (req, res) => {
-    db.Listings.find({ user: req.session.currentUser.id})
-    .then((foundListings) => {
-        if(!foundListings) {
-            res.status(400).json({message: "Cannot find trips"})
-        } else {
-            res.status(200).json({data:foundListings})
-        }
-    })
-}
+const getListings = async (req, res) => {
+    try {
+        const listings = await db.Listings.find();
+        res.status(200).json(listings);
+    } catch (error) {
+        console.error('Error fetching listings:', error);
+        res.status(500).json({ message: 'Error fetching listings' });
+    }
+};
 
-const updateListing = (req, res) => {
-    const userId = req.session.currentUser.id
-    db.Listings.findOneAndUpdate({_id: req.params.id, user: userId}, req.body, {new:true})
-    .then((updatedListing) => {
-        if(!updatedListing) {
-            res.status(400).json({message: "Couldn't update trip"})
-        } else {
-            res.status(200).json({message: "Trip updated successfully"})
+const editListing = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const listing = await db.Listing.findById(id);
+        if (!listing) {
+            return res.status(404).json({ message: 'Listing not found' });
         }
-    })
-    .catch((error) =>{
-        res.status(500).json({message: "Server Error", error:error.message})
-    })
-}
 
-const deleteListing = (req, res) => {
-    const userId = req.session.currentUser.id 
-    db.Listings.findOneAndDelete({ _id: req.params.id, user: userId})
-    .then((deletedListing) => {
-        if(!deletedListing) {
-            return res.status(400).json({ message: "Couldn't Delete Listing"})
-        } 
-            return db.Users,findOneAndUpdate({_id: userId}, {$pull: {trips: req.params.id}})
-            .then((updatedUser) => {
-                if(!updatedUser) {
-                    res.status(400).json({ message: "Couldn't update Listing"})
-                } else {
-                    res.status(200).json({ message: "removed trip from user"})
-                }
-            })
-            .catch((error) => {
-                res.status(500).json({message: "Server error", error:error.message})
-            })
-    })
-}
+        res.status(200).json({ listing });
+    } catch (error) {
+        console.error('Error fetching listing for edit:', error);
+        res.status(500).json({ message: 'Error fetching listing for edit' });
+    }
+};
+
+const deleteListing = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const deletedListing = await db.Listings.findByIdAndDelete(id);
+        if (!deletedListing) {
+            return res.status(404).json({ message: 'Listing not found' });
+        }
+        res.json({ message: 'Listing deleted successfully' });
+    } catch (error) {
+        console.error('Error deleting listing:', error);
+        res.status(500).json({ message: 'Error deleting listing' });
+    }
+};
 
 module.exports = {
     createListing,
-    getListing,
-    updateListing,
+    getListings,
+    editListing,
     deleteListing
 }

@@ -46,7 +46,7 @@ const UserRegistrationForm = ({ newUser }) => {
             <form onSubmit={handleSubmit}>
                 <p>Username: <input type="text" name="username" value={formData.username} onChange={handleInputChange} required /></p>
                 <p>Password: <input type="password" name="password" value={formData.password} onChange={handleInputChange} required /></p>
-                <button type="submit">Register</button>
+                <button type="submit" className='btn'>Register</button>
             </form>
         </div>
     )

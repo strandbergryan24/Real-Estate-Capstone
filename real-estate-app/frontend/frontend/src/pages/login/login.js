@@ -7,13 +7,6 @@ const UserLoginForm = (props) => {
     const navigate = useNavigate();
     const url = 'http://localhost:4000/';
 
-    // const [loginData, setLoginData] = useState({
-    //     username: '',
-    //     password: ''
-    // });
-
-
-
     const handleLogin = async (username, password) => {
 
         try {

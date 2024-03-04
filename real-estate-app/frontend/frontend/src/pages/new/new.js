@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './new.css'
 
 const ListingForm = () => {
@@ -10,15 +11,21 @@ const ListingForm = () => {
         bathrooms: '',
         squareFootage: '',
         description: '',
-        imageLinks: ['', '', '', '', '']
+        images: ['', '', '', '', '']
     });
 
+    const url = 'http://localhost:4000/';
+    const navigate = useNavigate();
+    
     const handleInputChange = (e, index) => {
         const { name, value } = e.target;
-        if (name.startsWith('imageLink')) {
-            const updatedLinks = [...listing.imageLinks];
-            updatedLinks[index] = value;
-            setListing({ ...listing, imageLinks: updatedLinks });
+        if (name.startsWith('images[')) {
+            const updatedImages = [...listing.images];
+            updatedImages[index] = value;
+            setListing(prevListing => ({
+                ...prevListing,
+                images: updatedImages
+            }));
         } else {
             setListing({ ...listing, [name]: value });
         }
@@ -28,9 +35,25 @@ const ListingForm = () => {
         setListing({ ...listing, propertyType: e.target.value });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        
+        try {
+            const response = await fetch(url + 'listings', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(listing)
+            });
+
+            if (response.ok) {
+                navigate('/'); 
+            } else {
+                console.log('Failed to submit the form');
+            }
+        } catch (error) {
+            console.error('Error occurred while submitting form:', error);
+        }
     };
 
     return (
@@ -79,12 +102,12 @@ const ListingForm = () => {
                 <p>Description: <textarea name="description" className="custom-input" rows="4" value={listing.description} onChange={(e) => handleInputChange(e, 6)} required></textarea></p>
                 <div children="form-photos">
                     <p>Image Links:</p>
-                    {listing.imageLinks.map((link, index) => (
+                    {listing.images.map((link, index) => (
                         <input
                             key={index}
                             type="text"
                             className="custom-input"
-                            name={`imageLink${index}`}
+                            name={`images[${index}]`}
                             value={link}
                             onChange={(e) => handleInputChange(e, index)}
                             placeholder={`Image ${index + 1} Link`}

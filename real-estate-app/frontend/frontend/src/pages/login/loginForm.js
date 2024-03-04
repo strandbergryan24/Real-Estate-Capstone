@@ -40,10 +40,7 @@ const Login = ({handleLogin}) => {
                     onChange={handleInputChange} 
                     placeholder='password'
                 />
-                
-                
-                {/* <p>Username: <input type="text" name="username" value={loginData.username} onChange={handleInputChange} required /></p>
-                <p>Password: <input type="password" name="password" value={loginData.password} onChange={handleInputChange} required /></p> */}
+                <br />
                 <button className='btn' type="submit">Login</button>
             </form>
             <h3><Link to='/register'>Create Account</Link></h3>

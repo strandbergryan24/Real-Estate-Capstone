@@ -7,16 +7,10 @@ const ListingSchema = new mongoose.Schema ({
       },
       images: {
         type: [String],
-        validate: {
-          validator: function(images) {
-            return images.length >= 1 && images.length <= 5;
-          },
-          message: 'At least one image is required, and no more than 5 images are allowed.'
-        }
       },
       propertyType: {
         type: String,
-        enum: ['RENT', 'SALE'],
+        enum: ['RENT', 'BUY'],
         required: true
       },
       price: {
@@ -43,4 +37,4 @@ const ListingSchema = new mongoose.Schema ({
 
 const Listing = mongoose.model('Listing', ListingSchema);
 
-module.exports = Listing
+module.exports = Listing;

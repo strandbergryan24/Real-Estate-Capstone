@@ -21,10 +21,9 @@ function App(props) {
         <Hero />
         <UserLoginForm user={user} setUser={setUser} />
         <Routes>
-          <Route path='/' element={ <Featured /> } />
           <Route path='/about' element={ <About /> } />
-          <Route path='/edit' element={ <EditListing /> } />
-          <Route path='/show' element={ <ShowListingPage /> } />
+          <Route path='/edit/:id' element={ <EditListing /> } />
+          <Route path='/' element={ <ShowListingPage /> } />
           <Route path='/register' element={ <UserRegistrationForm /> } />
           <Route path='/new' element={ <ListingForm /> } />
         </Routes>
