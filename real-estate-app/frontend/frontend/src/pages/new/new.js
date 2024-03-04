@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styles from './new.css'
+import './new.css'
 
 const ListingForm = () => {
     const [listing, setListing] = useState({
@@ -14,9 +14,14 @@ const ListingForm = () => {
     });
 
     const handleInputChange = (e, index) => {
-        const updatedLinks = [...listing.imageLinks];
-        updatedLinks[index] = e.target.value;
-        setListing({ ...listing, imageLinks: updatedLinks });
+        const { name, value } = e.target;
+        if (name.startsWith('imageLink')) {
+            const updatedLinks = [...listing.imageLinks];
+            updatedLinks[index] = value;
+            setListing({ ...listing, imageLinks: updatedLinks });
+        } else {
+            setListing({ ...listing, [name]: value });
+        }
     };
 
     const handlePropertyTypeChange = (e) => {
@@ -25,7 +30,7 @@ const ListingForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Handle form submission here
+        
     };
 
     return (
@@ -79,13 +84,14 @@ const ListingForm = () => {
                             key={index}
                             type="text"
                             className="custom-input"
+                            name={`imageLink${index}`}
                             value={link}
                             onChange={(e) => handleInputChange(e, index)}
                             placeholder={`Image ${index + 1} Link`}
                         />
                     ))}
                 </div>
-                <button className='btn' type="submit">Submit</button>
+                <button className='btn' type="submit" style={{ display: 'block', margin: '0 auto', marginTop: "10px" }}>Submit</button>
             </form>
         </div>
     );

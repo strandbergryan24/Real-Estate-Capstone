@@ -37,17 +37,6 @@
     color: #aaa; 
 }
 
-.listing-form-container button[type="submit"] {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    border-radius: 5px;
-    cursor: pointer;
-    width: 100%; 
-}
-
 .listing-form-container .form-photos input[type="text"] {
     width: calc(100% - 20px); 
     padding: 10px;
@@ -57,6 +46,7 @@
     box-sizing: border-box;
     margin-top: 5px;
     margin-bottom: 10px; 
+    
 }
 
 .listing-form-container .form-photos input[type="text"]:last-child {

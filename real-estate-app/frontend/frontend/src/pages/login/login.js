@@ -1,36 +1,35 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React from 'react';
+import { useNavigate, Routes, Route } from 'react-router-dom';
 import './login.css'
+import Login from './loginForm.js'
 
-const UserLoginForm = () => {
+const UserLoginForm = (props) => {
     const navigate = useNavigate();
     const url = 'http://localhost:4000/';
-    const [username, setUsername] = useState('');
-    const [loginData, setLoginData] = useState({
-        username: '',
-        password: ''
-    });
 
-    const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setLoginData({ ...loginData, [name]: value });
-    };
+    // const [loginData, setLoginData] = useState({
+    //     username: '',
+    //     password: ''
+    // });
 
-    const handleLogin = async (e) => {
-        e.preventDefault();
+
+
+    const handleLogin = async (username, password) => {
 
         try {
-            const response = await fetch(url + 'login', {
+            const response = await fetch(url + 'session', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(loginData)
+                body: JSON.stringify({ username, password })
             });
 
             if (response.ok) {
                 const userData = await response.json();
-                setUsername(userData.username);
+                props.setUser({
+                    username: userData.user.username
+                })
                 navigate('/');
             } else {
                 const errorData = await response.json();
@@ -41,17 +40,13 @@ const UserLoginForm = () => {
         }
     };
 
-    return (
-        <div className='userForm'>
-            <h1>User Login</h1>
-            <form onSubmit={handleLogin}>
-                <p>Username: <input type="text" name="username" value={loginData.username} onChange={handleInputChange} required /></p>
-                <p>Password: <input type="password" name="password" value={loginData.password} onChange={handleInputChange} required /></p>
-                <button className='btn' type="submit">Login</button>
-            </form>
-            <h3><Link to='/register'>Create Account</Link></h3>
-        </div>
-    );
-};
+    return(
+        <>
+            <Routes>
+                <Route path='/login' element={ < Login handleLogin={ handleLogin }/> }></Route>
+            </Routes>
+        </>
+    )
+}
 
 export default UserLoginForm;

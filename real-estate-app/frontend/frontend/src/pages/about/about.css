@@ -7,4 +7,11 @@ h1 {
     padding-right: 10%;
     padding-top: 1%;
     padding-bottom: 2%;
+    font-size: x-large;
+}
+
+.link {
+    text-align: center;
+    font-size: x-large;
+    padding-bottom: 2%;
 }

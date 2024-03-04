@@ -10,7 +10,7 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    trips: [{
+    listings: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: "Listings"
     }]

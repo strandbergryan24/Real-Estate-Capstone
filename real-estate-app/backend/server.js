@@ -14,6 +14,25 @@ const corsOptions = {
     credentials: true,
 };
 
+app.use('/login', (req, res, next) => {
+    console.log('Incoming request to /login');
+    console.log('Method:', req.method);
+    console.log('URL:', req.url);
+    console.log('Body:', req.body);
+    next();
+});
+
+app.use((req, res, next) => {
+    if (req.method === 'OPTIONS') {
+        res.header('Access-Control-Allow-Origin', corsOptions.origin);
+        res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+        res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+        res.sendStatus(200);
+    } else {
+        next();
+    }
+});
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors(corsOptions));
