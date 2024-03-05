@@ -1,0 +1,65 @@
+.listing-form-container {
+    width: 60%;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #007bff; 
+    border-radius: 10px; 
+    margin-bottom: 20px;
+}
+
+.listing-form-container .form-group {
+    margin-bottom: 20px;
+}
+
+.listing-form-container .custom-input {
+    width: calc(100% - 20px);
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    margin-top: 5px;
+}
+
+.listing-form-container textarea {
+    height: 100px;
+}
+
+.listing-form-container input[type="text"]:last-child,
+.listing-form-container input[type="number"]:last-child,
+.listing-form-container textarea:last-child {
+    margin-bottom: 0; 
+}
+
+.listing-form-container input[type="text"]::placeholder,
+.listing-form-container input[type="number"]::placeholder,
+.listing-form-container textarea::placeholder {
+    color: #aaa; 
+}
+
+.listing-form-container .form-photos input[type="text"] {
+    width: calc(100% - 20px); 
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    margin-top: 5px;
+    margin-bottom: 10px; 
+    
+}
+
+.listing-form-container .form-photos input[type="text"]:last-child {
+    margin-bottom: 10px; 
+}
+
+.listing-form-container .form-radio {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+
+.listing-form-container .form-radio label {
+    margin-right: 10px;
+    margin-left: 10px;
+}

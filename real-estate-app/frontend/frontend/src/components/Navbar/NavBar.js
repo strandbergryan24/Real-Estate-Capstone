@@ -1,30 +1,60 @@
-import React, {useState} from 'react'
-import {HiOutlineMenuAlt4} from 'react-icons/hi'
-import {FaRegTimesCircle} from 'react-icons/fa'
-import {BsFillHouseFill} from 'react-icons/bs'
-import './NavBar.css'
+import React, { useState } from 'react';
+import { HiOutlineMenuAlt4 } from 'react-icons/hi';
+import { FaRegTimesCircle } from 'react-icons/fa';
+import { BsFillHouseFill } from 'react-icons/bs';
+import { NavLink } from 'react-router-dom';
+import Logout from './logout.js'
 
-const NavBar = () => {
+import './NavBar.css';
 
-    const[click, setClick] = useState(false)
-    const handleClick = () => setClick(!click)
+const NavBar = (props) => {
+    const [click, setClick] = useState(false);
+    const [loggedIn, setLoggedIn] = useState(false);
+    const [username, setUsername] = useState('');
 
-  return (
-    <div className='navbar'>
-        <div className='container'>
-            <h1><span><BsFillHouseFill />Real</span>Estate</h1>
-            <button className='btn'>Sign In</button>
-            <ul className={click ? 'nav-menu active' : 'nav-menu'}>
-                <li><a href='#'>Home</a></li>
-                <li><a href='#'>About</a></li>
-                <li><a href='#'>New Listing</a></li>
-            </ul>
-            <div className='hamburger' onClick={handleClick}> 
-                {click ? (<FaRegTimesCircle className='icon' />) : (<HiOutlineMenuAlt4 className='icon'/>)}
+    const handleClick = () => setClick(!click);
+
+    const handleLogout = () => {
+        setLoggedIn(false);
+        setUsername('');
+    };
+
+    return (
+        <div className='navbar'>
+            <div className='container'>
+                <h1><span><BsFillHouseFill />Real</span>Estate</h1>
+
+                {props.user ? (
+                    <>
+                        <h3 className='btn'>{props.user.username}</h3>
+                        <div className='btn'><Logout setUser={props.setUser}  /></div>
+                    </>
+                ) : (
+                    <>
+                        <button className='btn'><NavLink to='/login'>Sign In</NavLink></button>
+                    </>
+                )}
+
+                <ul className={click ? 'nav-menu active' : 'nav-menu'}>
+                    <NavLink className='li' to="/">Home</NavLink>
+                    <NavLink className='li' to="/About" >About</NavLink>
+                    {props.user ? (
+                        <>
+                            <NavLink className='li' to="/new">New Listing</NavLink>
+
+                        </>
+                    ) : (
+                        <>
+                        </>
+                    )}
+                </ul>
+
+                <div className='hamburger' onClick={handleClick}>
+                    {click ? (<FaRegTimesCircle className='icon' />) : (<HiOutlineMenuAlt4 className='icon' />)}
+                </div>
             </div>
-        </div>    
-    </div>
-  )
-}
+        </div>
+    );
+};
 
-export default NavBar
+export default NavBar;

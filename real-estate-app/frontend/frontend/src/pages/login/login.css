@@ -1,0 +1,29 @@
+.userForm {
+    margin: 0 auto; 
+    width: 25%; 
+    background-color: #f0f8ff; 
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.userData {
+    margin: 10px 0; 
+}
+
+.userForm button {
+    margin-top: 10px; 
+    background-color: #008CBA;
+    color: white; 
+    border: none;
+    padding: 10px 20px; 
+    border-radius: 5px; 
+    cursor: pointer;
+    transition: background-color 0.3s ease; 
+}
+
+h3 {
+    padding-top: 2rem;
+    text-align: center; 
+}

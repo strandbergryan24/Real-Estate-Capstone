@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const UserSchema = new mongoose.Schema9({
+const UserSchema = new mongoose.Schema({
     username: {
         type: String,
         unique: true,
@@ -10,7 +10,7 @@ const UserSchema = new mongoose.Schema9({
         type: String,
         required: true
     },
-    trips: [{
+    listings: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: "Listings"
     }]

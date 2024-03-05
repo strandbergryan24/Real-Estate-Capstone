@@ -1,9 +1,10 @@
-const router = require('express').Router()
-const {listingCtrl} = require('../controllers/listingCtrl.js')
+const express = require('express');
+const router = express.Router();
+const { createListing, getListings, editListing, deleteListing, } = require('../controllers/listingCtrl.js');
 
-router.get('/', listingCtrl.getListing)
-router.post('/', listingCtrl.createListing)
-router.put('/:id', listingCtrl.updateListing)
-router.delete('/:id', listingCtrl.deleteListing)
+router.get('/', getListings);
+router.post('/', createListing);
+router.put('/:id', editListing);
+router.delete('/:id', deleteListing);
 
-module.exports = router
+module.exports = router;

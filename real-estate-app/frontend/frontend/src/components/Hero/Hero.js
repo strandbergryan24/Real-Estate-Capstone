@@ -1,8 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {AiOutlineSearch} from 'react-icons/ai'
 import './Hero.css'
 
 const Hero = () => {
+  const [selectedOption, setSelectedOption] = useState('buy');
+
+  const handleOptionChange = (e) => {
+    setSelectedOption(e.target.value);
+  };
+
   return (
     <div className='hero'>
       <div className='content'>
@@ -13,9 +19,9 @@ const Hero = () => {
             <input type='text' placeholder='Enter Keyword' />
           </div>
           <div className='radio'>
-            <input type='radio' checked />
+            <input type='radio' value='buy' checked={selectedOption === 'buy'} onChange={handleOptionChange} />
             <label>Buy</label>
-            <input type='radio' />
+            <input type='radio' value='rent' checked={selectedOption === 'rent'} onChange={handleOptionChange} />
             <label>Rent</label>
             <button type='submit'><AiOutlineSearch className='icon' /></button>
           </div>
@@ -25,7 +31,7 @@ const Hero = () => {
 
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default Hero

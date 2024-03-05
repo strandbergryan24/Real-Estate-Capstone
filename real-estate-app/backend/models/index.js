@@ -1,18 +1,21 @@
-const { error } = require('console')
-const mongoose = require('mongoose')
-const {MONGOURL} = process.env
+const { error } = require('console');
+const mongoose = require('mongoose');
+const { MONGOURI } = process.env;
 
-mongoose.connect(MONGOURL+"realEstateListing", {
-    useUnifiedTopology: true,
-    useNewurlParse: true
-})
+mongoose.connect(MONGOURI)
 
 mongoose.connection
-.on('open',()=>{console.log('Connected')})
-.on('close',()=>{console.log('disconected')})
-.on('error',(error)=>{console.log(error)})
+    .on('open', () => {
+        console.log('Connected to MongoDB');
+    })
+    .on('close', () => {
+        console.log('Disconnected from MongoDB');
+    })
+    .on('error', (error) => {
+        console.error('MongoDB connection error:', error);
+    });
 
-module.exports={
+module.exports= {
     Listings: require('./Listings'),
     Users: require('./Users')
 }

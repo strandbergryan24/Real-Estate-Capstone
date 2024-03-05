@@ -1,37 +1,54 @@
-import React from 'react'
-import Apt1 from '../../assets/apt1.jpg'
-import Apt2 from '../../assets/apt2.jpg'
-import Apt3 from '../../assets/apt3.jpg'
-import './Featured.css'
+import React, { useState, useEffect } from 'react';
+import './Featured.css';
 
 const Featured = () => {
+    const url = 'http://localhost:4000';
+    const [listing, setListings] = useState([]);
+
+    useEffect(() => {
+        fetchListings();
+    }, []);
+
+    const fetchListings = async () => {
+        try {
+            const response = await fetch(url + '/');
+            if(!response.ok) {
+                throw new Error('Failed to fetch listings');
+            }
+            const data = await response.json();
+            setListings(data);
+        } catch (error) {
+            console.error('Error fetching listings:', error);
+        }
+    };
+
     return (
         <div className='featured'>
-            <h1 className='featured-text'>API CALL FOR ADDRESS</h1>
+            <h1 className='featured-text'>{listening.address}</h1>
             <div className='container'>
-                <img className='span-3 image-grid-row-2' src={Apt1} alt='' />
-                <img src={Apt2} alt='' />
-                <img src={Apt3} alt='' />
-                <img src={Apt3} alt='' />
-                <img src={Apt2} alt='' />
+                <img className='span-3 image-grid-row-2' src={listing.image} alt='' />
+                <img src={listing.image} alt={listing.image} />
+                <img src={listing.image} alt={listing.image} />
+                <img src={listing.image} alt={listing.image} />
+                <img src={listing.image} alt={listing.image} />
                 <div className='img-details span-5 info-grid'>
                     <div className='info'>
                         <p>HOME FOR SALE</p>
                     </div>
                     <div className='info'>
-                        <p>PRICE:700,000</p>
+                        <p>Price: ${listing.price}</p>
                     </div>
                     <div className='info'>
-                        <p>Number of Bedrooms: 5</p>
+                        <p>Number of Bedrooms: {listing.bedrooms}</p>
                     </div>
                     <div className='info'>
-                        <p>Number of bathrooms: 7</p>
+                        <p>Number of bathrooms: {listing.bathrooms}</p>
                     </div>
                     <div className='info'>
-                        <p>Square Footage: 7,400ft</p>
+                        <p>Square Footage: {listing.squareFootage} sqft</p>
                     </div>
                     <div className='span-5 discription'>
-                        <p>API CALL FOR DESCRIPTION AND INFORMATION: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id leo in velit pretium accumsan vel nec mauris. Suspendisse potenti. Nulla facilisi. Duis interdum eleifend nisl, vel eleifend purus consequat id. Sed auctor ante eu felis condimentum eleifend. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; </p>
+                        <p>{listing.description}</p>
                     </div>
                     <div className='span-5'>
                         <button className='btn'> View Listing </button>

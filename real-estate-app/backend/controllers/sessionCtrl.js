@@ -1,13 +1,13 @@
-const bcryot = require("bcrypt");
-const Users = require('..models/Users');
-const express = require('express');
+const express = require('express')
+const bcrypt = require("bcrypt");
+const Users = require('../models/Users');
 
-const session = (req, res) => {
+const login = (req, res) => {
     Users.findOne({ username: req.body.username }).then((foundUser) => {
         if(!foundUser) {
             res.status(400).json({ message: 'cannot find username' });
         } else {
-            if (bcryot.compareSync(req.body.password, foundUser.password)) {
+            if (bcrypt.compareSync(req.body.password, foundUser.password)) {
                 if (
                     req.session.currentUser &&
                     req.session.currentUser._id === foundUser._id
@@ -19,7 +19,7 @@ const session = (req, res) => {
                 } else {
                     req.session.regenerate((err) => {
                         if (err) {
-                            res.status(500).json({ message: 'error regenerating session' });
+                            res.status(500).json({ message: 'error regenerating login' });
                         } else {
                             req.session.currentUser = {
                                 id: foundUser._id,
@@ -39,19 +39,16 @@ const session = (req, res) => {
     });
 };
 
-const deleteSession = (req, res) => {
+const logout = (req, res) => {
     req.session.destroy((err) => {
       if (err) {
-        res.status(400).json({ message: "Error destroying the session" });
+        res.status(400).json({ message: "Error destroying the login" });
       } else {
         res.clearCookie('connect.sid');
-        res.status(200).json({ message: "Session ended successfully" });
+        res.status(200).json({ message: "login ended successfully" });
       }
     });
   };
   
-  module.exports = {
-    session,
-    deleteSession,
-  };
+  module.exports = { login, logout };
   
