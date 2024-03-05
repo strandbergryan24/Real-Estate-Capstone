@@ -84,35 +84,3 @@
     margin: .8rem 0;
     width: 60%;
 }
-
-@media and (max-width:940px) {
-    .featured .container {
-        grid-template-columns: repeat(1, 1fr); 
-    }
-    
-    .span-3,
-    .span-2,
-    .span-5 {
-        grid-column: span 1; 
-    }
-    
-    .info-grid {
-        grid-template-columns: repeat(1, 1fr); 
-    }
-    
-    .img-details .discription {
-        padding: 0rem 1rem 1rem 1rem; 
-    }
-
-    .info {
-        flex-wrap: wrap;
-        text-align: center;
-    }
-
-    .info p {
-        overflow: hidden;
-        white-space: nowrap; 
-        text-overflow: ellipsis; 
-        max-width: 100%; 
-    }
-}
