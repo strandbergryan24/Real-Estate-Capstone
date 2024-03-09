@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const EditListing = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [listing, setListing] = useState({
     address: '',
     images: ['', '', '', '', ''],
@@ -43,15 +44,18 @@ const EditListing = () => {
         },
         body: JSON.stringify(listing)
       });
+      navigate('/')
     } catch (error) {
       console.error('Error updating listing:', error);
     }
   };
 
-  const handleInputChange = event => {
-    const { name, value } = event.target;
-    setListing({ ...listing, [name]: value });
-  };
+  const handleInputChange = (name, value) => {
+    const updatedImages = [...listing.images];
+    const index = parseInt(name.match(/\d+/)[0], 10); // Extract index from name
+    updatedImages[index] = value;
+    setListing({ ...listing, [name]: value, images: updatedImages });
+};
 
   const handlePropertyTypeChange = (e) => {
     setListing({ ...listing, propertyType: e.target.value });
@@ -110,7 +114,7 @@ const EditListing = () => {
                     className="custom-input"
                     name={`images[${index}]`}
                     value={link}
-                    onChange={(e) => handleInputChange(e, index)}
+                    onChange={(e) => handleInputChange(`images[${index}]`, e.target.value)}
                     placeholder={`Image ${index + 1} Link`}
                 />
             ))}
