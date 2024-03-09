@@ -36,6 +36,7 @@
 .span-5 {
     grid-column: span 5;
     margin-top: 0rem;
+    
 }
 
 .image-grid-row-2 {
@@ -56,12 +57,13 @@
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     justify-content: center; 
-    align-items: center; 
+    align-items: center;
 }
 
 .img-details {
     display: grid;
     place-items: center;
+    --row-height: 50px;
 }
 
 .img-details .discription {
@@ -76,6 +78,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    
 }
 
 .featured .info {

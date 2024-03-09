@@ -27,7 +27,7 @@ const NavBar = (props) => {
                 {props.user ? (
                     <>
                         <h3 className='btn'>{props.user.username}</h3>
-                        <div className='btn'><Logout setUser={props.setUser}  /></div>
+                        <div><Logout setUser={props.setUser}  /></div>
                     </>
                 ) : (
                     <>
