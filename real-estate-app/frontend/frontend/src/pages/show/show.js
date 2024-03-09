@@ -64,8 +64,8 @@ const ShowListingPage = (props) => {
                                     {listing.images[2] && <img src={listing.images[2]} alt={listing.images[0]} />}
                                     {listing.images[3] && <img src={listing.images[3]} alt={listing.images[0]} />}
                                     {listing.images[4] && <img src={listing.images[4]} alt={listing.images[0]} />}
-                                    <div className='img-details span-5 info-grid'>
-                                        <div className='info'>
+                                    <div className='img-details span-5 info-grid' >
+                                        <div className='info'  >
                                             <p>HOME FOR SALE</p>
                                         </div>
                                         <div className='info'>

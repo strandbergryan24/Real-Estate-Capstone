@@ -1,5 +1,6 @@
 const { error } = require('console');
 const mongoose = require('mongoose');
+require('dotenv').config();
 const { MONGOURI } = process.env;
 
 mongoose.connect(MONGOURI)
