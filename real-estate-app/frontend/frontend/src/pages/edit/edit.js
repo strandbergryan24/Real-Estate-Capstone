@@ -51,7 +51,7 @@ const EditListing = () => {
   };
 
   const handleInputChange = (name, value) => {
-    if (name.includes("images")) {
+    if (typeof name === "string" && name.includes("images")) {
         const updatedImages = [...listing.images];
         const index = parseInt(name.match(/\d+/)[0], 10); // Extract index from name
         updatedImages[index] = value;
