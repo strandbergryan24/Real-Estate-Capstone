@@ -50,12 +50,15 @@ const EditListing = () => {
     }
   };
 
-  const handleInputChange = (name, value) => {
-    if (typeof name === "string" && name.includes("images")) {
+  const handleInputChange = (e, index) => {
+    const { name, value } = e.target;
+    if (name.startsWith('images[')) {
         const updatedImages = [...listing.images];
-        const index = parseInt(name.match(/\d+/)[0], 10); // Extract index from name
         updatedImages[index] = value;
-        setListing({ ...listing, images: updatedImages });
+        setListing(prevListing => ({
+            ...prevListing,
+            images: updatedImages
+        }));
     } else {
         setListing({ ...listing, [name]: value });
     }
