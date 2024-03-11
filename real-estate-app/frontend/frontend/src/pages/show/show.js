@@ -5,7 +5,7 @@ import './show.css'
 const ShowListingPage = (props) => {
     const [listings, setListings] = useState([]);
     const navigate = useNavigate();
-    const url = 'http://localhost:4000/';
+    const url = 'https://real-estate-capstone-1.onrender.com/';
 
     useEffect(() => {
         fetchAllListings();
