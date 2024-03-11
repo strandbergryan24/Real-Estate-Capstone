@@ -14,7 +14,7 @@ const ListingForm = () => {
         images: ['', '', '', '', '']
     });
 
-    const url = 'http://localhost:4000/';
+    const url = 'https://real-estate-capstone-1.onrender.com/';
     const navigate = useNavigate();
     
     const handleInputChange = (e, index) => {
