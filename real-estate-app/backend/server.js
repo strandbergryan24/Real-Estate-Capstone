@@ -10,7 +10,7 @@ require('dotenv').config();
 const { PORT } = process.env;
 
 const corsOptions = {
-    origin: "https://real-estate-capstone.onrender.com/",
+    origin: "https://real-estate-capstone.onrender.com",
     methods: ['GET', 'POST', 'PUT', 'DELETE'], // specify allowed methods
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true,
