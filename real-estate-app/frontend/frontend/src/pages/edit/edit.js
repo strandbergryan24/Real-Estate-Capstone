@@ -51,10 +51,14 @@ const EditListing = () => {
   };
 
   const handleInputChange = (name, value) => {
-    const updatedImages = [...listing.images];
-    // const index = parseInt(name.match(/\d+/)[0], 10); Extract index from name
-    // updatedImages[index] = value;
-    setListing({ ...listing, [name]: value, images: updatedImages });
+    if (name.includes("images")) {
+        const updatedImages = [...listing.images];
+        const index = parseInt(name.match(/\d+/)[0], 10); // Extract index from name
+        updatedImages[index] = value;
+        setListing({ ...listing, images: updatedImages });
+    } else {
+        setListing({ ...listing, [name]: value });
+    }
 };
 
   const handlePropertyTypeChange = (e) => {
